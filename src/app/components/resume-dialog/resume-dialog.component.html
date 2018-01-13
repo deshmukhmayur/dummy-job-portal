@@ -1,0 +1,17 @@
+<!-- <p>
+  resume-dialog works!
+</p> -->
+<h2 mat-dialog-title>{{data.title}}</h2>
+<mat-dialog-content>
+  <object [data]="data.resumeUrl" type="application/pdf" width="100%" height="100%">
+    <p>Unable to load the document</p>
+  </object>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <a [href]="data.resumeUrl" target="_blank" mat-button color="primary">
+    <span>Download</span>
+    <mat-icon>file_download</mat-icon>
+  </a>
+  <span class="spacer"></span>
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

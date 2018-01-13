@@ -1,0 +1,96 @@
+<main class="bg-grey lighten-5">
+  <nav class="navbar-fixed">
+    <a mat-button (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+    </a>
+    <span>Register</span>
+  </nav>
+  <div class="wrapper v-align">
+    <mat-card class="block-center l-400">
+      <form (submit)="register()" method="POST">
+        <mat-card-content>
+          <mat-horizontal-stepper [linear]="false">
+            <mat-step>
+              <ng-template matStepLabel>Basic Details</ng-template>
+              <div class="inner-container">
+                <div class="row">
+                  <mat-form-field class="col">
+                    <input matInput placeholder="First name" type="text" name="fname" [(ngModel)]="user_data.fname" required>
+                  </mat-form-field>
+                  <mat-form-field class="col">
+                    <input matInput placeholder="Last name" type="text" name="lname" [(ngModel)]="user_data.lname" required>
+                  </mat-form-field>
+                </div>
+                <div class="row">
+                  <mat-form-field class="col">
+                    <input matInput placeholder="Email Address" type="email" name="email" [(ngModel)]="user_data.email" required>
+                  </mat-form-field>
+                  <mat-form-field class="col">
+                    <input matInput placeholder="Contact Number" type="tel" name="contact" [(ngModel)]="user_data.contact" required>
+                  </mat-form-field>
+                </div>
+                <div class="row">
+                  <mat-form-field class="col">
+                    <textarea matInput placeholder="Address" name="address" [(ngModel)]="user_data.address" required></textarea>
+                  </mat-form-field>
+                </div>
+                <div class="row">
+                  <mat-form-field class="col">
+                    <mat-select placeholder="Select Country" name="country" [(ngModel)]="user_data.country" required>
+                      <mat-option *ngFor="let country of countries" [value]="country.code">{{ country.name }}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="spacer"></div>
+                <button mat-button color="primary" matStepperNext type="button">
+                  <span>Next</span>
+                  <mat-icon>arrow_forward</mat-icon>
+                </button>
+              </div>
+            </mat-step>
+            <mat-step [optional]="true">
+              <ng-template matStepLabel>Login Credentials</ng-template>
+              <div class="inner-container">
+                <div class="row">
+                  <mat-form-field class="col">
+                    <input type="email" matInput placeholder="Your email address" name="email2" [(ngModel)]="user_data.email" disabled>
+                  </mat-form-field>
+                </div>
+                <div class="row">
+                  <mat-form-field class="col">
+                    <input matInput placeholder="Enter password" type="password" name="password" [(ngModel)]="user_data.password" required>
+                  </mat-form-field>
+                </div>
+                <div class="row">
+                  <mat-form-field class="col">
+                    <input matInput placeholder="Re-enter password" type="password" name="password" (keyup)="checkPassword($event)" required>
+                    <mat-error *ngIf="user_data.country">
+                      The entered passwords do not match
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <button mat-button matStepperPrevious type="button">
+                  <mat-icon>arrow_back</mat-icon>
+                  <span>Previous</span>
+                </button>
+                <span class="spacer"></span>
+                <button mat-raised-button color="accent" matStepperNext type="submit" [disabled]="!canSubmit">
+                  <span>Register</span>
+                  <mat-icon>done</mat-icon>
+                </button>
+              </div>
+            </mat-step>
+          </mat-horizontal-stepper>
+        </mat-card-content>
+      </form>
+    </mat-card>
+    <span class="block-center center-align l-400">
+      Already registered?
+      <a mat-button routerLink="/login" color="primary">Sign In</a>
+    </span>
+  </div>
+</main>

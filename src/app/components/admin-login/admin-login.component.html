@@ -1,0 +1,40 @@
+<main class="bg-grey lighten-5">
+  <nav class="navbar-fixed">
+    <a mat-button (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+    </a>
+    <span>Admin Login</span>
+  </nav>
+  <div class="wrapper v-align">
+    <form (submit)="submit()">
+      <mat-card class="block-center l-300">
+        <mat-card-title>Admin</mat-card-title>
+        <mat-card-subtitle>Login to continue...</mat-card-subtitle>
+        <mat-card-content>
+          <div class="inner-container">
+            <div class="row">
+              <mat-form-field class="col">
+                <input matInput placeholder="Email Address" type="email" name="username" [(ngModel)]="username" required>
+              </mat-form-field>
+            </div>
+            <div class="row">
+              <mat-form-field class="col">
+                <input matInput placeholder="Password" [type]="!showIcon ? 'password' : ''" name="password" [(ngModel)]="password" required>
+                <mat-button-toggle matSuffix (click)="showIcon = !showIcon; return">
+                  <mat-icon *ngIf="!showIcon">visibility</mat-icon>
+                  <mat-icon *ngIf="showIcon">visibility_off</mat-icon>
+                </mat-button-toggle>
+              </mat-form-field>
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <div class="row">
+            <div class="spacer"></div>
+            <button mat-raised-button color="accent" type="submit">Sign In</button>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  </div>
+</main>

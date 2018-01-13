@@ -1,0 +1,81 @@
+<mat-toolbar color="primary" class="fixed-top mat-elevation-z5">
+  <button mat-button (click)="goBack()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <span>Dashboard</span>
+  <span class="spacer"></span>
+  <button mat-button (click)="logOut()">
+    <span>Log Out</span>
+    <mat-icon>exit_to_app</mat-icon>
+  </button>
+</mat-toolbar>
+
+<main class="wrapper">
+  <div class="l-400 block-center">
+    <form (submit)="submit()" method="POST">
+      <mat-card>
+        <mat-card-title>New Submissions Form</mat-card-title>
+        <mat-card-content>
+          <div class="inner-container">
+            <div class="row">
+              <h5>Personal Details:</h5>
+            </div>
+            <div class="row">
+              <mat-form-field class="col">
+                <input matInput placeholder="First Name" type="text" [(ngModel)]="info.fname" name="fname" required>
+              </mat-form-field>
+              <mat-form-field class="col">
+                <input matInput placeholder="Last Name" type="text" [(ngModel)]="info.lname" name="lname" required>
+              </mat-form-field>
+            </div>
+            <div class="row">
+              <mat-form-field class="col">
+                <input matInput placeholder="Email Address" type="email" [(ngModel)]="info.email" name="email" required>
+              </mat-form-field>
+              <mat-form-field class="col">
+                <input matInput placeholder="Contact No." type="tel" [(ngModel)]="info.contact" name="contact" required>
+              </mat-form-field>
+            </div>
+            <div class="row">
+              <mat-form-field class="col">
+                <textarea matInput placeholder="Address" type="text" [(ngModel)]="info.address" name="address" required></textarea>
+              </mat-form-field>
+            </div>
+            <div class="row">
+              <mat-form-field class="col">
+                <mat-select placeholder="Select Country" name="country" [(ngModel)]="info.country" required>
+                  <mat-option *ngFor="let country of countries" [value]="country.code">{{ country.name }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="row">
+              <h5>Professional Details:</h5>
+            </div>
+            <div class="row">
+              <mat-form-field class="col">
+                <input matInput placeholder="Role" type="text" [(ngModel)]="info.role" name="role" required>
+              </mat-form-field>
+              <mat-form-field class="col">
+                <input matInput placeholder="Years of Experience" type="number" [(ngModel)]="info.experience" name="years_of_experience"
+                  min="0" max="60" required>
+              </mat-form-field>
+            </div>
+            <div class="row">
+              <div class="col">
+                <label for="resume">Upload Resume</label>
+                <input type="file" accept=".pdf,.doc,.docx,.odf" (change)="onChange($event)" name="resume" required>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <div class="row">
+            <button mat-button color="warn" (click)="goBack()" type="button">Discard</button>
+            <div class="spacer"></div>
+            <button mat-raised-button color="accent" type="submit">Submit</button>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  </div>
+</main>

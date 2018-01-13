@@ -1,0 +1,68 @@
+<mat-toolbar color="primary" class="fixed-top mat-elevation-z5">
+  <span>Admin Dashboard</span>
+  <span class="spacer"></span>
+  <button mat-button (click)="logOut()">
+    <span>Log Out</span>
+    <mat-icon>exit_to_app</mat-icon>
+  </button>
+</mat-toolbar>
+
+<main class="wrapper">
+  <div class="l-400 block-center">
+    <div class="row">
+      <h4>All Submissions:</h4>
+    </div>
+
+    <mat-card class="center-align" *ngIf="users.length <= 0">
+      <p>No submissions at this moment.</p>
+    </mat-card>
+    
+    <mat-expansion-panel *ngFor="let user of users; let i=index">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <span>{{i+1}}.</span>&nbsp;&nbsp;
+          <span>{{user.name}}</span>
+        </mat-panel-title>
+        <mat-panel-description>
+          {{user.email}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="inner-container">
+        <div class="row">
+          <mat-form-field class="col">
+            <input matInput placeholder="Role" type="text" [(ngModel)]="user.role" [readonly]="!editMode">
+          </mat-form-field>
+          <mat-form-field class="col">
+            <input matInput placeholder="Years of Experience" type="number" [(ngModel)]="user.years_of_experience" min="0" max="70" [readonly]="!editMode">
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="col">
+            <textarea matInput placeholder="Address" [(ngModel)]="user.address" [readonly]="!editMode"></textarea>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="col">
+            <input matInput placeholder="Contact" type="text" [(ngModel)]="user.contact" [readonly]="!editMode">
+          </mat-form-field>
+          <mat-form-field class="col">
+            <input matInput placeholder="Country" type="text" [(ngModel)]="user.country" [readonly]="!editMode">
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <button mat-raised-button color="primary" class="col" (click)="openDialog(user.name, user.resume_url)">View CV</button>
+        </div>
+      </div>
+
+      <mat-action-row>
+        <mat-button-toggle (click)="editMode=!editMode; return">
+          <mat-icon>mode_edit</mat-icon>
+        </mat-button-toggle>
+        <span class="spacer"></span>
+        <button mat-button color="warn" *ngIf="editMode" (click)="deleteSubmission(i)">Delete</button>
+        <button mat-raised-button color="accent" *ngIf="editMode" (click)="updateSubmission(i)">Save</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </div>
+</main>

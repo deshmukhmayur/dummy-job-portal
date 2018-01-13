@@ -1,1 +1,91 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Roboto, Helvetica, sans-serif;
+}
+.flex-container {
+    display: flex;
+}
+.spacer {
+    flex: 1 1 auto;
+}
+.wrapper {
+    display: flex;
+    height: 100vh;
+    flex: 0 1 auto;
+    flex-direction: column;
+}
+mat-toolbar.fixed-top + main.wrapper {
+    padding-top: 72px;
+    height: fit-content;
+}
+.wrapper.v-align {
+    justify-content: center;
+}
+.l-400 {
+    width: 400px;
+}
+.l-300 {
+    width: 300px;
+}
+@media screen and (max-width: 425px) {
+    .l-400, .l-300 {
+        width: 90vw;
+    }
+}
+.navbar-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 1000;
+}
+.fixed-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+.center-align {
+    text-align: center;
+}
+
+.block-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bg-grey.lighten-5 {
+    background-color: #fafafa;
+}
+
+.inner-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.row> .col {
+    flex: 1 1 auto;
+    margin-right: 5px;
+}
+.row> .col:last-child {
+    margin-right: 0;
+}
+
+
+/**
+ * Modifying some of the default styles of Angular Material
+ */
+.mat-button-toggle-standalone {
+    box-shadow: none !important;
+}

@@ -1,0 +1,64 @@
+<mat-toolbar color="primary" class="fixed-top mat-elevation-z5">
+  <span>Dashboard</span>
+  <span class="spacer"></span>
+  <button mat-button (click)="logOut()">
+    <span>Log Out</span>
+    <mat-icon>exit_to_app</mat-icon>
+  </button>
+</mat-toolbar>
+
+<main class="wrapper">
+  <div class="l-400 block-center">
+    <div class="row">
+      <h4>My Submissions:</h4>
+    </div>
+
+    <mat-card class="center-align" *ngIf="submissions.length <= 0">
+      <p>No submissions found.</p>
+      <p>Click the plus <mat-icon size="small">add</mat-icon> button for a new submission.</p>
+    </mat-card>
+
+    <mat-expansion-panel *ngFor="let row of submissions; let i=index">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <span>{{i+1}}.</span>&nbsp;&nbsp;
+          <span>{{row.fname}} {{row.lname}}</span>
+        </mat-panel-title>
+        <mat-panel-description>
+          {{row.email}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="inner-container">
+        <div class="row">
+          <mat-form-field class="col">
+            <input matInput placeholder="Role" type="text" name="role" [ngModel]="row.role" readonly>
+          </mat-form-field>
+          <mat-form-field class="col">
+            <input matInput placeholder="Years of Experience" type="number" min="0" max="70" name="years_of_experience" [ngModel]="row.years_of_experience" readonly>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="col">
+            <textarea matInput placeholder="Address" name="address" [ngModel]="row.address" readonly></textarea>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="col">
+            <input matInput placeholder="Contact" type="text" name="contact" [ngModel]="row.contact" readonly>
+          </mat-form-field>
+          <mat-form-field class="col">
+            <input matInput placeholder="Country" type="text" name="country" [ngModel]="row.country" readonly>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <button mat-raised-button color="primary" class="col" type="button" (click)="openDialog(row.name, row.resume_url)">View CV</button>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </div>
+</main>
+
+<a mat-fab color="accent" routerLink="/dashboard/new" style="position: fixed; bottom: 48px; right: 48px;">
+  <mat-icon aria-label="New Submission">add</mat-icon>
+</a>
